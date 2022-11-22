@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<!--사용자 CSS 추가-->
+<th:block layout:fragment="css">
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+
+.logo2{
+  text-align: left;
+  margin: auto;
+  width: 520px;
+}
+
+.next_order{
+  text-align: right;
+  margin-top: -33px;
+}
+
+.form_wrap{
+    width: 460px;
+    margin: auto;
+}
+
+p.fieldError{
+    width: 460px;
+    text-align: center;
+}
+
+
+
+
+
+    </style>
+</th:block>
+
+<!--사용자 스크립트 추가-->
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+
+
+    </script>
+</th:block>
+
+<div layout:fragment="content">
+
+
+    <div class="wrap">
+        <div class="logo">
+            <h1>장바구니</h1>
+        </div>
+        <hr color="#ffffff">
+
+
+        <div class="contents">
+            <div class="side_bar">
+                <h5 style="text-align:center">MyPage</h5>
+                <hr>
+                <ul>
+                    <li><a th:href="@{/cart}" style="text-decoration:none; color:black;">장바구니</a></li>
+                    <li><a th:href="@{/orders}" style="text-decoration:none; color:black;">주문내역</a></li>
+                    <li><a th:href="@{/memberUpdate}" style="text-decoration:none; color:black;">회원정보변경</a></li>
+                </ul>
+            </div>
+
+            <div class="contents1">
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</html>

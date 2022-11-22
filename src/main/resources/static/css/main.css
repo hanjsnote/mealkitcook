@@ -1,0 +1,69 @@
+.carousel-inner > .item {
+    height: 350px;
+}
+.margin{
+    margin-bottom:30px;
+}
+.banner{
+    height: 300px;
+    position: absolute; top:0; left: 0;
+    width: 100%;
+    height: 100%;
+}
+.card-text{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+a:hover{
+    text-decoration:none;
+}
+.center{
+    text-align:center;
+}
+
+.card{
+margin:10px 30px 10px 30px;
+}
+
+
+
+.prod-list {
+  list-style:none;
+  margin: auto;
+  padding:0;
+  width: 80%;
+ }
+  .prod-list li {
+    position: relative;
+    float: left;
+    padding: 0;
+    margin: 10px;
+    overflow: hidden;
+  }
+.prod-list img {
+  margin:0;
+  padding:0;
+  float:left;
+  z-index:5;
+}
+.prod-list .card-body{
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+}
+.prod-list li:hover .card-body{
+  opacity: 1;
+  transform: translateY(-200px);
+}
+.prod-list .card-body h4, .prod-list .card-body h3, .prod-list .card-body p{
+  color: #fff;
+  text-align: center;
+}
+

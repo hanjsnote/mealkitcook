@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+
+<!--사용자 스크립트 추가-->
+<th:block layout:fragment="script">
+
+  <script th:inline="javascript">
+
+  </script>
+</th:block>
+
+<!--사용자 CSS 추가-->
+<th:block layout:fragment="css">
+  <style>
+
+.logo2 h1{
+font-size:40;
+color:gray;
+text-align: center;
+margin-top:-20px;
+}
+
+.logo2 p{
+font-size:10;
+color:gray;
+text-align: center;
+}
+.form_wrap h1{
+font-size:34px;
+text-align:center;
+margin-top:30px;
+}
+
+.form_wrap p{
+font-size:16px;
+text-align:center;
+margin-top:30px;
+}
+
+img{
+float: left;
+}
+
+  </style>
+</th:block>
+
+
+<div layout:fragment="content">
+
+
+  <div class="wrap">
+    <div class="logo2">
+      <h1>브랜드 스토리</h1>
+      <p>Brand Story</p>
+    </div>
+
+    <div class="contents">
+      <div class="form_wrap">
+        <h1><span style="color:orange;">세상의 모든 맛집,</span> <span style="color:#FF5E00">이젠 집에서 즐긴다</span></h1>
+        <p style="line-height:50%">밀키트쿡은 '한 곳에서 다양한 맛집들의 음식을 제공하는 곳'</p>
+        <p style="line-height:50%">이라는 취지로 시작한 온라인 조리식, 밀키트 전문판매점 입니다.</p><br>
+        <p style="line-height:50%">복잡한 밑준비로 인한 낭비되는 재료없이 손질된 신선한 식재료 및 양념을 포함하여</p>
+        <p style="line-height:50%">요리솜씨가 없더라도 수준급의 다양한 요리를 일반 가정에서도 손쉽게 만들수 있도록 해줍니다.</p>
+      </div>
+
+      <div class="row" style="margin-top:100px;">
+          <div class="col-md-3 margin">
+            <img src="/images/돼지 불백.jpg">
+          </div>
+          <div class="col-md-3 margin">
+            <img src="/images/모둠 부대찌개.jpg">
+          </div>
+          <div class="col-md-3 margin">
+            <img src="/images/볼로네제 라구 파스타.jpg">
+          </div>
+          <div class="col-md-3 margin">
+            <img src="/images/사골떡만둣국.jpg">
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="~{layouts/layout1}"> <!--layouts 폴더 아래에 있는 layout1.html을 적용하기 위해 네임스페이스를 추가-->
+
+    <div layout:fragment="content"> <!--layout1.html 파일의 <div layout:fragment="content"> 영역에 들어간다-->
+        본문 영역 입니다
+    </div>
+
+</html>

@@ -1,0 +1,38 @@
+.contents{
+display:flex;
+flex-direction: row;
+}
+
+.side_bar{
+width:20%;
+}
+
+.side_bar ul{
+list-style:none;
+padding:auto;
+}
+
+.contents1{
+width:80%
+}
+
+.contents2{
+
+
+}
+
+.list{
+width:880px;
+display:flex;
+justify-content: center;
+<!--align-items: center;-->
+}
+
+table{
+width: 100%;
+border-collapse: collapse;
+}
+th, td {
+border-bottom: 1px solid #dadada;
+padding: 10px;
+}

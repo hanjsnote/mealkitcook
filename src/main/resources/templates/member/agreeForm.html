@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+
+<!--사용자 스크립트 추가-->
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+
+    </script>
+</th:block>
+
+<!--사용자 CSS 추가-->
+<th:block layout:fragment="css">
+    <style>
+        * {
+  box-sizing: border-box;
+}
+
+html,
+<!--body {-->
+<!--  height: 100%;-->
+<!--}-->
+
+body {
+<!--  display: flex;-->
+  margin: 0;
+  background-color: #f5f6f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+.logo2{
+  text-align: left;
+  margin: auto;
+  width: 460px;
+}
+
+.next_order{
+  text-align: right;
+  margin-top: -33px;
+}
+
+<!--.wrap .contents {-->
+<!--  padding: 50px;-->
+<!--  background-color: #ffffff;-->
+<!--  border: 1px solid #dadada;-->
+<!--  border-radius: 5px;-->
+<!--  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);-->
+<!--}-->
+
+#form__wrap {
+  margin: 0 auto;
+  width: 460px;
+  font-size: 14px;
+}
+
+#form__wrap .terms__check__all {
+  display: flex;
+}
+
+#form__wrap .terms__check__all label {
+  margin-left: 3px;
+  text-decoration: underline;
+}
+
+.terms__list .terms__box {
+  margin: 20px 0;
+}
+
+.contents label {
+  font-weight: 700;
+}
+
+
+label.required::before {
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #0086ff;
+  content: "(필수) ";
+}
+
+.terms__list .terms__content {
+  height: 88px;
+  overflow: auto;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #dadada;
+  background: #fff;
+  font-size: 12px;
+}
+
+
+@media (max-width: 768px) {
+  .wrap {
+    min-width: 280px;
+    padding: 20px;
+  }
+
+  #form__wrap {
+    max-width: 460px;
+    width: auto;
+  }
+}
+
+
+
+    </style>
+</th:block>
+
+
+
+
+
+
+
+<div layout:fragment="content">
+
+    <div class="wrap">
+        <div class="logo">
+            <h1>회원가입</h1>
+        </div>
+        <div class="next_order">
+            <p>01 약관동의 > <span style="color: #BDBDBD;">02 정보입력 > 03 가입완료</span></p>
+        </div>
+        <hr color="gray">
+        <div class="logo2">
+            약관동의
+        </div>
+        <hr color="gray" width="460px">
+        <div class="contents">
+            <form action="/" method="POST" id="form__wrap">
+                <div class="terms__check__all">
+                    <input type="checkbox" name="checkAll" id="checkAll" />
+                    <label for="checkAll"
+                    >주식회사 밀키트쿡의 모든 약관을 확인하고 전체 동의합니다.</label
+                    >
+                </div>
+                <ul class="terms__list">
+                    <li class="terms__box">
+                        <div class="input__check">
+                            <input type="checkbox" name="agreement" id="termsOfService" value="termsOfService" required />
+                            <label for="termsOfService" class="required">이용약관</label>
+                        </div>
+                        <div class="terms__content">
+                            제1조(목적) 표준약관 제10023호<br>
+                            이 약관은 주식회사 밀키트쿡 회사(전자상거래 사업자)가 운영하는 주식회사 밀키트쿡 인터넷 사이트(이하"
+                            밀키트쿡"이라 한다)에서 제공하는 전자상거래 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 밀키트쿡과
+                            이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.<br>
+                            ※ 「PC통신등을 이용하는 전자거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다」
+                        </div>
+                    </li>
+                    <li class="terms__box">
+                        <div class="input__check">
+                            <input type="checkbox" name="agreement" id="privacyPolicy" value="privacyPolicy" required />
+                            <label for="privacyPolicy" class="required">개인정보 수집 및 이용</label>
+                        </div>
+                        <div class="terms__content">
+                            1. 목적 : 이용자 식별 및 본인여부 확인<br>
+                            &nbsp; 항목 : 이름, 이메일, 비밀번호<br>
+                            &nbsp; 보유 및 이용기간 : 회원 탈퇴 후 5일까지<br>
+                            2. 목적 : 민원 등 고객 고충처리<br>
+                            &nbsp; 항목 : 이메일, 휴대전화번호<br>
+                            &nbsp; 보유 및 이용기간 : 회원 탈퇴 후 5일까지<br>
+                        </div>
+                    </li>
+                    <!--<li class="terms__box">
+                        <div class="input__check">
+                            <input type="checkbox" name="agreement" id="allowPromotions" value="allowPromotions" />
+                            <label for="allowPromotions">프로모션 정보 수신 동의</label>
+                        </div>
+                        <div class="terms__content">
+
+
+                        </div>
+                    </li>-->
+                </ul>
+               <!-- <button type="submit" class="next-button" disabled>확인</button>-->
+              <!--  <button type="submit" class="next-button">다음단계</button>-->
+                <div class="find-btn">
+                    <button class="previous-button" type="submit" onclick="location.href='/'">메인화면</button>
+                    <button class="next-button" type="submit" onclick="location.href='/members/new'">다음단계</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+</html>

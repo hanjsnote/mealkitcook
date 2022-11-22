@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/css/board.css">
+</head>
+
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+
+
+    </script>
+</th:block>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+  <style>
+.side_bar ul{
+text-align:center;
+margin-left:-25%;
+}
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+
+  <div class="wrap">
+    <div class="logo">
+      <h1>상품관리</h1>
+    </div>
+    <hr color="#ffffff">
+
+
+    <div class="contents">
+      <div class="side_bar">
+        <h5 style="text-align:center">Admin Setting</h5>
+        <hr>
+        <ul>
+          <li><a th:href="@{/admin/items}" style="text-decoration:none; color:black;">상품관리</a></li>
+          <li><a th:href="@{/admin/item/new}" style="text-decoration:none; color:black;">상품등록</a></li>
+          <li><a th:href="@{/admin/memberMng}" style="text-decoration:none; color:black;">회원관리</a></li>
+          <li><a th:href="@{/admin/memberMng}" style="text-decoration:none; color:black;">QnA관리</a></li>
+        </ul>
+      </div>
+
+
+
+      <div class="contents1">
+
+        <h1>회원/QnA관리창입니다</h1>
+
+      </div>
+    </div>
+  </div>
+</div>
+</html>

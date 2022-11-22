@@ -1,0 +1,124 @@
+html {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+}
+body {
+    min-height: 100%;
+}
+.footer{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 110px;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+
+}
+.content{
+    margin-bottom:150px;
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+
+
+.footer-title{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+li.nav-item{
+margin: 0px 30px;
+}
+
+a.nav-link{
+font-size : 16px;
+font-weight: 600;
+}
+
+
+
+
+.wrap {
+  margin: auto;
+}
+
+.wrap .logo {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.wrap .logo h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+ .pagination a {
+  color: black;
+  background-color: #ffffff;
+}
+
+.pagination a:hover {
+  background-color: black;
+  color: white;
+}
+
+.find-btn{
+	text-align: center;
+}
+.find-btn1{
+	display :inline-block;
+}
+
+.next-button {
+  width: 90px;
+  height: 35px;
+  outline: none;
+  cursor: pointer;
+  background-color: black;
+  color: #FFFFFF;
+  border: none;
+  transition-duration: 0.2s;
+}
+
+.previous-button {
+  width: 90px;
+  height: 35px;
+  outline: none;
+  cursor: pointer;
+  background-color: #C2C2C2;
+  color: #000000;
+  border: none;
+  transition-duration: 0.2s;
+}
+
+.next-button:hover:enabled {
+  background-color: #a3a2a2;
+}
+
+.next-button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.previous-button:hover:enabled {
+  background-color: #a3a2a2;
+}
+
+.previous-button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.dropdown-menu{
+opacity: 0.8;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}

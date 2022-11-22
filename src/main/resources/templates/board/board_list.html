@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/board.css">
+</head>
+
+<!--사용자 CSS 추가-->
+<th:block layout:fragment="css">
+    <style>
+
+
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+
+    <div class="wrap">
+        <div class="logo">
+            <h1>QnA</h1>
+        </div>
+        <hr color="gray">
+
+
+        <div class="contents">
+            <div class="side_bar">
+                <ul>
+                    <li><a th:href="@{/board/board_list}" style="text-decoration:none; color:black;">Q&A 리스트</a></li>
+                    <li><a th:href="@{/post}" style="text-decoration:none; color:black;">Q&A 쓰기</a></li>
+                </ul>
+            </div>
+
+    <table class="contents1">
+        <thead>
+        <tr>
+            <th class="one wide">번호</th>
+            <th class="ten wide">글제목</th>
+            <th class="two wide">작성자</th>
+            <th class="three wide">작성일</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- CONTENTS !-->
+        <tr th:each="board : ${boardList}">
+            <td>
+                <span th:text="${board.id}"></span>
+            </td>
+            <td>
+                <a th:href="@{'/board/' + ${board.id}}">
+                    <span th:text="${board.title}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${board.member.name}"></span>
+            </td>
+            <td>
+                <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${1 == boardList.pageable.pageNumber + 1} ? 'disabled'">
+                    <a class="page-link" href="#" th:href="@{/board/board_list(page=${boardList.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">&laquo;</a>
+                </li>
+                <li class="page-item" th:classappend="${i == boardList.pageable.pageNumber + 1} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                    <a class="page-link" href="#" th:href="@{/board/board_list(page=${i - 1})}" th:text="${i}">1</a>
+                </li>
+                <li class="page-item" th:classappend="${boardList.totalPages == boardList.pageable.pageNumber + 1} ? 'disabled'">
+                    <a class="page-link" href="#" th:href="@{/board/board_list(page=${boardList.pageable.pageNumber + 1})}">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    <!--<div class="list">
+        <span th:each="pageNum : ${pageList}" th:inline="text" >
+        <a th:href="@{'board_list/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+        </span>
+    </div>-->
+
+       <!-- <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+                    <a th:href="@{'board_list/?page=' + ${pageNum} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
+                        <span aria-hidden='true'>&laquo;</span>
+                    </a>
+                </li>
+
+                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+                    <a th:href="@{'board_list/?page=' + ${pageNum} + '&page=' + ${pageNum-1}}" th:inline="text" class="page-link">[[${pageNum}]]</a>
+                </li>
+
+                <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
+                    <a th:href="@{'board_list/?page=' + ${pageNum} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
+                        <span aria-hidden='true'>&raquo;</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>-->
+
+
+
+    <div class="contents2">
+
+        <form class="row g-3 d-flex justify-content-end" method="get" th:action="@{/board/board_list}">
+            <div class="col-auto">
+
+                <input type="text" class="form-control" id="searchText" name="searchText" th:value="${param.searchText}" placeholder="제목 또는 내용">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-light mb-3">검색</button>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+</div>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">  <!--spring Security태그를 사용하기 위해 네임스페이스 추가-->
+
+    <div th:fragment="header">  <!--다른 페이지에 포함시킬 영역을 th:fragment로 선언-->
+
+        <header class="blog-header lh-1 py-3" style="background-color: #FFFFFF;">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="navbar-brand" href="/" style="font-size:30px; color:black; margin-left:15px ">MEALKIT COOK</a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul style="list-style:none;">
+                        <li class="btn btn-sm btn-outline-secondary" sec:authorize="isAnonymous()" ><!--로그인하지 않은 상태이면 로그인 메뉴를 보여준다-->
+                            <a href="/members/login"  style="color:black; ">LOGIN</a>
+                        </li>
+                        <li class="btn btn-sm btn-outline-secondary" sec:authorize="isAnonymous()" style="margin-right:15px">
+                            <a href="/members/agree" style="color:black;">JOIN</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()" style="margin-right:15px"><!--로그인(인증)했을 경우에만 보여주도록한다-->
+                            <span sec:authentication="name">사용자</span>
+                            <span sec:authentication="principal.authorities">권한</span>
+                            <a class="btn btn-sm btn-outline-secondary" href="/members/logout" style="color:black;">LOGOUT</a>
+                        </li>
+                    </ul>
+                    <!--<a class="btn btn-sm btn-outline-secondary" href="/members/login">LOGIN</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="/members/new">JOIN</a>-->
+                </div>
+            </div>
+        </header>
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFFFF;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item" sec:authorize="permitAll"><!--모든 유저가 볼수 있다-->
+                        <a class="nav-link" href="/brand">브랜드 스토리</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="permitAll"><!--모든 유저가 볼수 있다-->
+                        <a class="nav-link" href="/menu">밀키트</a>
+                    </li>
+                 <!--   <li class="nav-item" sec:authorize="isAuthenticated()">&lt;!&ndash;장바구니와 구매이력 페이지의 경우 로그인(인증)했을 경우에만 보여주도록한다&ndash;&gt;
+                        <a class="nav-link" href="/cart">장바구니</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">&lt;!&ndash;장바구니와 구매이력 페이지의 경우 로그인(인증)했을 경우에만 보여주도록한다&ndash;&gt;
+                        <a class="nav-link" href="/orders">주문 내역</a>
+                    </li>-->
+                    <li class="nav-item" sec:authorize="permitAll"><!--모든 유저가 볼수 있다-->
+                        <a class="nav-link" href="/board/board_list">QnA</a>
+                    </li>
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()"><!--장바구니와 구매이력 페이지의 경우 로그인(인증)했을 경우에만 보여주도록한다-->
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">MyPage</a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/cart">장바구니</a></li>
+                            <li><a class="dropdown-item" href="/orders">주문내역</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><!--관리자계정으로 로그인한 경우 상품등록, 상품관리 메뉴출력-->
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">관리자 메뉴</a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/admin/items">상품관리</a></li>
+                            <li><a class="dropdown-item" href="/admin/item/new">상품등록</a></li>
+                        </ul>
+                    </li>
+                  <!--  <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">&lt;!&ndash;관리자계정으로 로그인한 경우 상품등록, 상품관리 메뉴출력&ndash;&gt;
+                        <a class="nav-link" href="/admin/item/new">상품 등록</a>
+                    </li>-->
+
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
+                    <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="상품검색" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <!--<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo03"
+                    aria-controls="navbarTogglerDemo03"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/">MealcitCook</a>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"> &lt;!&ndash;관리자계정으로 로그인한 경우 상품등록, 상품관리 메뉴출력&ndash;&gt;
+                        <a class="nav-link" href="/admin/item/new">상품 등록</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"> &lt;!&ndash;관리자계정으로 로그인한 경우 상품등록, 상품관리 메뉴출력&ndash;&gt;
+                        <a class="nav-link" href="/admin/items">상품 관리</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()"> &lt;!&ndash;장바구니와 구매이력 페이지의 경우 로그인(인증)했을 경우에만 보여주도록한다&ndash;&gt;
+                        <a class="nav-link" href="/cart">장바구니</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()"> &lt;!&ndash;장바구니와 구매이력 페이지의 경우 로그인(인증)했을 경우에만 보여주도록한다&ndash;&gt;
+                        <a class="nav-link" href="/orders">구매이력</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()"> &lt;!&ndash;QnA 경우 로그인(인증)했을 경우에만 보여주도록한다&ndash;&gt;
+                        <a class="nav-link" href="/board_list">QnA</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAnonymous()"> &lt;!&ndash;로그인하지 않은 상태이면 로그인 메뉴를 보여준다&ndash;&gt;
+                        <a class="nav-link" href="/members/login">로그인</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()"> &lt;!&ndash;로그인한 상태이면 로그아웃 메뉴를 보여줍니다&ndash;&gt;
+                        <a class="nav-link" href="/members/logout">로그아웃</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
+                    <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>-->
+    </div>
+
+</html>

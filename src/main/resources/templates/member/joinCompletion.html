@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+
+<!--사용자 스크립트 추가-->
+<th:block layout:fragment="script">
+
+  <script th:inline="javascript">
+
+  </script>
+</th:block>
+
+<!--사용자 CSS 추가-->
+<th:block layout:fragment="css">
+  <style>
+
+.logo2{
+  text-align: left;
+  margin: auto;
+  width: 460px;
+}
+
+.next_order{
+  text-align: right;
+  margin-top: -33px;
+}
+
+.form_wrap{
+  width: 460px;
+  height: 230px;
+  margin: auto;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.completion1{
+  margin-top: 62px;
+  font-size: 22px;
+  text-align: center;
+  padding: 50px 0p;
+  color: #747474;
+}
+
+
+  </style>
+</th:block>
+
+
+<div layout:fragment="content">
+
+
+  <div class="wrap">
+    <div class="logo">
+      <h1>회원가입</h1>
+    </div>
+    <div class="next_order">
+      <p><span style="color: #BDBDBD;">01 약관동의 > 02 정보입력 ></span> 03 가입완료</p>
+    </div>
+    <hr color="gray">
+    <div class="logo2">
+      가입완료
+    </div>
+
+
+    <div class="contents">
+      <form action="/" method="get" class="form_wrap">
+        <div class="completion1">
+          <p>밀키트쿡 회원가입이 완료되었습니다.</p>
+
+        </div>
+        <div class="find-btn">
+          <button class="next-button" type="submit" onclick="location.href='/'">메인화면</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
