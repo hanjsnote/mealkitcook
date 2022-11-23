@@ -86,9 +86,10 @@ margin:10px;
                         <p th:text="${boardDto.content}"></p>
                     </div>
                     <hr color="#EAEAEA">
-                    <div class="find-btn" >
+<!--                <div class="find-btn" th:if="${#authentication.principal.member_id} == ${board.user_id}"> //현재 로그인한 유저와 게시글 작성자 확인해서 삭제 수정버튼 보이기 보류-->
+                    <div class="find-btn" th:if="${#authentication.principal.member_id} == ${board.user_id}">
                         <a th:href="@{'/board/edit/' + ${boardDto.id}}">
-                        <button class="next-button" th:if="${#authentication.principal.member_id} == ${board.user_id}" >수정</button>
+                        <button class="next-button" >수정</button>
                         </a>
                         <input class="previous-button" type="button" onclick="location.href='/board/board_list'" value="목록">
                         <form th:action="@{'/board/delete/'}" method="post">

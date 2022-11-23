@@ -4,6 +4,7 @@
       layout:decorate="~{layouts/layout1}">
 
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
@@ -18,13 +19,18 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
-.main{
-min-height: 100%;
-}
+
 
 .pagination{
 margin-bottom: 110px;
 }
+
+.main{
+margin-bottom: 8%;
+}
+
+.container{
+margin-top: 1%;
 
 
     </style>
@@ -39,6 +45,7 @@ margin-bottom: 110px;
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
+            <a href="/menu">
             <div class="carousel-item active">
                 <img src="https://www.miele.co.kr/media/microsites/ubc/images/posts/Fruehlingssalat_Aufmacher_1920x650.jpg" class="d-block w-100" alt="First slide">
             </div>
@@ -48,6 +55,7 @@ margin-bottom: 110px;
             <div class="carousel-item">
                 <img src="https://www.miele.co.kr/media/microsites/ubc/images/posts/Kaffeerezepte-Osso_Bucco_02-Wolfgang-Kowall-1920x650.jpg" class="d-block w-100" alt="Third slide">
             </div>
+            </a>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -70,62 +78,50 @@ margin-bottom: 110px;
         </div>
     </div>-->
 
-    <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}"><!--Search기능을 이용해서 상품을 검색할때 페이징 처리시 해당 검색어를 유지하기 위해 hidden값으로 검색어 유지-->
-    <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
-        <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>    <!--상품을 검색했을때 어떤 검색어로 조회된 결과인지 보여준다-->
-    </div>
-    <div>
-        <p class="text-center" style="font-size:30px; margin-top:50px;" >신상품</p>
-    </div>
-
-
-    <ul class="prod-list">
-
-    <div class="row" style="margin-top:10px;">
-
-        <th:block th:each="item, status: ${items.getContent()}"><!--조회한 메인상품 데이터를 보여준다 부트스트랩의 Card컴포넌트를 이용, 사용자가 카드형태로 생품의 이름,내용,가격을 볼수 있다-->
-            <div class="col-md-4 margin">
-                <li>
-                <div class="card">
-                    <a th:href="'/item/' +${item.id}" class="text-dark">
-                        <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="400">
-                        <div class="card-body">
-                            <h4 class="card-title">[[${item.itemNm}]]</h4>
-                            <!--<p class="card-text">[[${item.itemDetail}]]</p>-->
-                            <p class="card-text">주문과 상세 설명은 클릭해주세요</p>
-                            <h3 class="card-title text-info">[[${item.price}]]원</h3>
-                        </div>
-                    </a>
+    <!-- 아이콘 부분 시작 -->
+    <div class="container">
+        <div class="row service">
+            <div class="col-xs-6 col-md-3">
+                <div class="row">
+                    <i class="bi bi-gift"></i>
+                    <div class="col-xs-8 col-md-12 icontxt">
+                        <h4>Honesty &amp; Sincerity</h4>
+                        <p>정직하고 성실하게 만들겠습니다.</p>
+                    </div>
                 </div>
-                </li>
             </div>
-        </th:block>
-    </div>
-    </ul>
+            <div class="col-xs-6 col-md-3">
+                <div class="row">
+                    <i class="bi bi-cart"></i>
+                    <div class="col-xs-8 col-md-12 icontxt">
+                        <h4>Fast shipping</h4>
+                        <p>신선한 재료를 빠르게 배달합니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="row">
+                    <i class="bi bi-person-check"></i>
+                    <div class="col-xs-8 col-md-12 icontxt">
+                        <h4>Customer Service</h4>
+                        <p>고객분들의 만족을 위해 최선을 다하겠습니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="row">
+                    <i class="bi bi-github"></i>
+                    <div class="col-xs-8 col-md-12 icontxt">
+                        <h4>Github</h4>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- 아이콘 끝-->
 
 
 
-    <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
-        <ul class="pagination justify-content-center">
-
-            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
-                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
-                    <span aria-hidden='true'>&laquo;</span>
-                </a>
-            </li>
-
-            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
-                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
-            </li>
-
-            <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
-                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
-                    <span aria-hidden='true'>&raquo;</span>
-                </a>
-            </li>
-
-        </ul>
-    </div>
 
 </div>
 </html>
