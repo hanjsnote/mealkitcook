@@ -42,16 +42,16 @@
     <div class="row" style="margin-top:10px;">
 
       <th:block th:each="item, status: ${items.getContent()}"><!--조회한 메인상품 데이터를 보여준다 부트스트랩의 Card컴포넌트를 이용, 사용자가 카드형태로 생품의 이름,내용,가격을 볼수 있다-->
-        <div class="col-md-4 margin">
+        <div class="col-md-3 margin">
           <li>
             <div class="card1">
               <a th:href="'/item/' +${item.id}" class="text-dark">
-                <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="400">
+                <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="250">
                 <div class="card-body">
                   <h4 class="card-title">[[${item.itemNm}]]</h4>
                   <!--<p class="card-text">[[${item.itemDetail}]]</p>-->
-                  <p class="card-text">주문과 상세 설명은 클릭해주세요</p>
-                  <h3 class="card-title text-info">[[${item.price}]]원</h3>
+                  <p class="card-text">주문과 상세 설명은 클릭</p>
+                  <h3 class="card-title">[[${item.price}]]원</h3>
                 </div>
               </a>
             </div>

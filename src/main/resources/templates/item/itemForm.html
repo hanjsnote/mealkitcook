@@ -138,7 +138,7 @@ margin-left:-25%;
             <div class="form-inline form-group" th:each="num: ${#numbers.sequence(1,3)}">   <!--반복문으로 아래를 1부터 3까지 반복처리한다-->
                 <div class="custom-file img-div">
                     <input type="file" class="custom-file-input" name="itemImgFile">
-                    <label class="custom-file-label" th:text="상품이미지 + ${num}"></label> <!--상품이미지1 이미지2 이미지3 이미지4 이미지5를 출력한다-->
+                    <label class="custom-file-label" th:text="상품이미지 + ${num}" ></label> <!--상품이미지1 이미지2 이미지3를 출력한다-->
                 </div>
             </div>
         </div>

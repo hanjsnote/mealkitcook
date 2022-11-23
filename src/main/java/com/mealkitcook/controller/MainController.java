@@ -38,7 +38,7 @@ public class MainController {
 
     @GetMapping(value = "/menu")
     public String menu(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model){
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 9);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 8);
         Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageable);
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
